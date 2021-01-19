@@ -6,18 +6,16 @@
 
 # Lektion 2
 
-### Idag har jag jobbat med gissnings systemet 
-
 ## innehåll:
 
-### Jag har under denna dagens lektion lagt till 2 nya Funktioner, en ny instans och ett par class variabler
+### Jag har under dagens lektion jobbat med gissnings systemet, lagt till 2 nya Funktioner, en ny instans och ett par class variabler
 
 ## Instanser:
 
-### (Hanga_gubbe) jag gjort en ny instans som jag kommer använda som game loop istället för min main
+### (Hanga_gubbe) Jag gjort en ny instans som jag kommer använda som game loop istället för min main
 
 ## Funktioner:
 
-### (Rätt_Eller_Fel) Ny funktion som räknarut om en gissning är rätt eller fel soc sedan skickar datan vidare till print funktionen
+### (Rätt_Eller_Fel) Ny funktion som räknarut om en gissning är rätt eller fel och sedan skickar datan vidare till print funktionen
 
 ### (Print) Ny funktion som skriver ut ordet/hur mång rätt du har Ex. (T _ S _)  + hur många fel du har
