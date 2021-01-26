@@ -6,7 +6,7 @@
 
 # Lektion 2
 
-## innehåll:
+## Innehåll:
 
 ### Jag har under dagens lektion jobbat med gissnings systemet, lagt till 2 nya Funktioner, en ny instans och ett par class variabler
 
@@ -19,3 +19,17 @@
 ### (Rätt_Eller_Fel) Ny funktion som räknarut om en gissning är rätt eller fel och sedan skickar datan vidare till print funktionen
 
 ### (Print) Ny funktion som skriver ut ordet/hur mång rätt du har Ex. (T _ S _)  + hur många fel du har
+
+# Lektion 3
+
+## Innehåll:
+
+### Jag har under dagens lektion gjort klart gissnings systemet, lagt till 1 ny funktion, och ändrat i min hänga gubbe instans.
+
+## Instanser:
+
+### (Hänga gubbe) Det är ingen stor skullnad på ändringarna jag gjort utan istället för att ha instansen som game loop starta den bara up game loopen istället.
+
+## Funktioner:
+
+### (Game loop) Innehåller rästen av gissnings systemet samt loopen som körs tills spelet slutar.
