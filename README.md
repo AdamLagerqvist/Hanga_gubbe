@@ -6,7 +6,7 @@
 
 # Lektion 2
 
-## innehåll:
+## Innehåll:
 
 ### Jag har under dagens lektion jobbat med gissnings systemet, lagt till 2 nya Funktioner, en ny instans och ett par class variabler
 
@@ -22,7 +22,7 @@
 
 # Lektion 3
 
-## innehåll:
+## Innehåll:
 
 ### Jag har under dagens lektion gjort klart gissnings systemet, lagt till 1 ny funktion, och ändrat i min hänga gubbe instans.
 
