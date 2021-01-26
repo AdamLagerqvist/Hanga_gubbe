@@ -4,49 +4,48 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Hanga_gubbe{
-    String Hang_ord;
-    int Fel = 0;
-    int Rätt = 0;
-    int tillåtna_fel = 0;
-    ArrayList<Character> U = new ArrayList<Character>();
-    boolean Ub = true;
+    String seacretWord;
+    int Fail = 0;
+    int Right = 0;
+    int FailCap = 0;
+    ArrayList<Character> printWord = new ArrayList<Character>();
+    boolean printWordB = true;
 
     /*
     Startar min game loop
      */
     Hanga_gubbe() {
-        ArrayList<String> Ord = new ArrayList<String>();
+        ArrayList<String> Words = new ArrayList<String>();
         Scanner in2 = null;
         in2 = new Scanner(System.in);
         System.out.println("Skriv 1 om du vill använda ett random ord eller skriv 2 om du vill välja ordet själv");
         if (Integer.parseInt(in2.nextLine()) == 1){
-            Ord = from_file("Ord");
-            Hang_ord = (Rand_List(Ord));
+            Words = from_file("Ord");
+            seacretWord = (Rand_List(Words));
         } else{
-                Hang_ord = in2.nextLine();
+            seacretWord = in2.nextLine();
         }
         System.out.println("Hur manga fel tillater du innan spelet ar forlorat 8 ar rekomenderat");
-        tillåtna_fel = in2.nextInt();
+        FailCap = in2.nextInt();
         print();
         System.out.println("Spelet kan nu borja skriv en bokstav för att gissa");
         game_loop();
-        // write_S_ArrayList(Ord);
     }
 
     public void game_loop(){
         ArrayList<String> Gissningar = new ArrayList<String>();
         Scanner in2 = null;
         in2 = new Scanner(System.in);
-        while (tillåtna_fel > Fel && Rätt < Hang_ord.length()){
+        while (FailCap > Fail && Right < seacretWord.length()){
             String gissning = in2.nextLine();
             if (!Gissningar.contains(gissning)){
                 Gissningar.add(gissning);
-                Rätt_Eller_Fel(gissning.charAt(0));
+                rightOrWrong(gissning.charAt(0));
             }else {
                 print();
             }
         }
-        if (tillåtna_fel < Fel){
+        if (FailCap < Fail){
             print();
             System.out.println("You lost");
         } else{
@@ -58,25 +57,23 @@ public class Hanga_gubbe{
 
     public static void main(String[] args){
         Hanga_gubbe instans = new Hanga_gubbe();
-        //instans.Rätt_Eller_Fel('O');
-        //instans.Rätt_Eller_Fel('q');
     }
 
     /*
     Kollar om en String/gissning finns i ordet 1 eller flera gånger
     startar också Utritnings systemet
     */
-    public void Rätt_Eller_Fel(char S) {
+    public void rightOrWrong(char S) {
         boolean Om_Fel = true;
-        for (int i = 0;i < Hang_ord.length();i++) {
-            if (Character.toUpperCase(S) == Character.toUpperCase(Hang_ord.charAt(i))) {
-                U.set(i, S);
-                Rätt++;
+        for (int i = 0;i < seacretWord.length();i++) {
+            if (Character.toUpperCase(S) == Character.toUpperCase(seacretWord.charAt(i))) {
+                printWord.set(i, S);
+                Right++;
                 Om_Fel = false;
             }
         }
         if (Om_Fel){
-            Fel++;
+            Fail++;
         }
         print();
     }
@@ -85,17 +82,17 @@ public class Hanga_gubbe{
     Printar ut ordet + antalet fel du har (fixar gui'n)
     */
     public void print(){
-        if(Ub) {
-            for (int i = 0; i < Hang_ord.length(); i++) {
-                U.add('_');
-                Ub = false;
+        if(printWordB) {
+            for (int i = 0; i < seacretWord.length(); i++) {
+                printWord.add('_');
+                printWordB = false;
             }
         }
         System.out.println("\n\n\n\n\n\n\n");
-        for (int i=0; i < U.size(); i++) {
-            System.out.print(U.get(i));
+        for (int i=0; i < printWord.size(); i++) {
+            System.out.print(printWord.get(i));
         }
-        System.out.println("\nRätt: " + Rätt + "\nFel: " + Fel + "/" + tillåtna_fel);
+        System.out.println("\nRätt: " + Right + "\nFel: " + Fail + "/" + FailCap);
     }
 
     /*
@@ -122,20 +119,11 @@ public class Hanga_gubbe{
             }
         }
         // loop för inmatningen av ord i ArrayListen
-        ArrayList<String> Ord = new ArrayList<String>();
+        ArrayList<String> Words = new ArrayList<String>();
         while (in.hasNext()) {
-            Ord.add(in.nextLine());
+            Words.add(in.nextLine());
         }
         // skickar ut listan full med ord
-        return Ord;
-    }
-
-    /*
-    Funktion för utskrift av ArrayLists
-     */
-    public void write_S_ArrayList (ArrayList<String> sring_arr){
-        for (int i = 0; i < sring_arr.size(); i++){
-            System.out.println(sring_arr.get(i));
-        }
+        return Words;
     }
 }
