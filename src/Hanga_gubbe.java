@@ -7,24 +7,59 @@ public class Hanga_gubbe{
     String Hang_ord;
     int Fel = 0;
     int Rätt = 0;
+    int tillåtna_fel = 0;
     ArrayList<Character> U = new ArrayList<Character>();
     boolean Ub = true;
 
     /*
-    Är min game loop
+    Startar min game loop
      */
     Hanga_gubbe() {
         ArrayList<String> Ord = new ArrayList<String>();
-        Ord = from_file("Ord");
-        // write_S_ArrayList(Ord);
-        Hang_ord = (Rand_List(Ord));
+        Scanner in2 = null;
+        in2 = new Scanner(System.in);
+        System.out.println("Skriv 1 om du vill använda ett random ord eller skriv 2 om du vill välja ordet själv");
+        if (Integer.parseInt(in2.nextLine()) == 1){
+            Ord = from_file("Ord");
+            Hang_ord = (Rand_List(Ord));
+        } else{
+                Hang_ord = in2.nextLine();
+        }
+        System.out.println("Hur manga fel tillater du innan spelet ar forlorat 8 ar rekomenderat");
+        tillåtna_fel = in2.nextInt();
         print();
+        System.out.println("Spelet kan nu borja skriv en bokstav för att gissa");
+        game_loop();
+        // write_S_ArrayList(Ord);
+    }
+
+    public void game_loop(){
+        ArrayList<String> Gissningar = new ArrayList<String>();
+        Scanner in2 = null;
+        in2 = new Scanner(System.in);
+        while (tillåtna_fel > Fel && Rätt < Hang_ord.length()){
+            String gissning = in2.nextLine();
+            if (!Gissningar.contains(gissning)){
+                Gissningar.add(gissning);
+                Rätt_Eller_Fel(gissning.charAt(0));
+            }else {
+                print();
+            }
+        }
+        if (tillåtna_fel < Fel){
+            print();
+            System.out.println("You lost");
+        } else{
+            print();
+            System.out.println("Du vann yey");
+        }
+        return;
     }
 
     public static void main(String[] args){
         Hanga_gubbe instans = new Hanga_gubbe();
-        instans.Rätt_Eller_Fel('O');
-        instans.Rätt_Eller_Fel('q');
+        //instans.Rätt_Eller_Fel('O');
+        //instans.Rätt_Eller_Fel('q');
     }
 
     /*
@@ -60,7 +95,7 @@ public class Hanga_gubbe{
         for (int i=0; i < U.size(); i++) {
             System.out.print(U.get(i));
         }
-        System.out.println("\nRätt: " + Rätt + "\nFel: " + Fel);
+        System.out.println("\nRätt: " + Rätt + "\nFel: " + Fel + "/" + tillåtna_fel);
     }
 
     /*
