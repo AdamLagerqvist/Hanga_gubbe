@@ -33,3 +33,9 @@
 ## Funktioner:
 
 ### (Game loop) Innehåller rästen av gissnings systemet samt loopen som körs tills spelet slutar.
+
+# Lektion 4
+
+## Innehåll:
+
+### Har fixat så att koden ser lite snyggare ut samt lagt till try och chaches för att programmet inte ska paja om man råkar sriva fel.
