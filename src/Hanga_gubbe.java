@@ -19,14 +19,27 @@ public class Hanga_gubbe{
         Scanner in2 = null;
         in2 = new Scanner(System.in);
         System.out.println("Skriv 1 om du vill använda ett random ord eller skriv 2 om du vill välja ordet själv");
-        if (Integer.parseInt(in2.nextLine()) == 1){
-            Words = from_file("Ord");
-            seacretWord = (Rand_List(Words));
-        } else{
-            seacretWord = in2.nextLine();
+        while(seacretWord == null) {
+            try{
+                if (Integer.parseInt(in2.nextLine()) == 1){
+                    Words = from_file("Ord");
+                    seacretWord = (Rand_List(Words));
+                } else{
+                    System.out.println("Skriv ordet");
+                    seacretWord = in2.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Skriv 1 eller 2");
+            }
         }
-        System.out.println("Hur manga fel tillater du innan spelet ar forlorat 8 ar rekomenderat");
-        FailCap = in2.nextInt();
+        System.out.println("Hur manga fel tillater du innan spelet ar forlorat 8 ar rekomenderat (kan ej vara 0)");
+        while (FailCap == 0) {
+            try {
+                FailCap = Integer.parseInt(in2.nextLine());
+            } catch (Exception e) {
+                System.out.println("Skriv en nummer");
+            }
+        }
         print();
         System.out.println("Spelet kan nu borja skriv en bokstav för att gissa");
         game_loop();
@@ -41,8 +54,12 @@ public class Hanga_gubbe{
             if (!Gissningar.contains(gissning)){
                 Gissningar.add(gissning);
                 rightOrWrong(gissning.charAt(0));
+                System.out.print("gissade bokstäver: ");
+                System.out.print(Gissningar);
             }else {
                 print();
+                System.out.print("gissade bokstäver: ");
+                System.out.print(Gissningar);
             }
         }
         if (FailCap < Fail){
@@ -64,15 +81,15 @@ public class Hanga_gubbe{
     startar också Utritnings systemet
     */
     public void rightOrWrong(char S) {
-        boolean Om_Fel = true;
+        boolean If_Wrong = true;
         for (int i = 0;i < seacretWord.length();i++) {
             if (Character.toUpperCase(S) == Character.toUpperCase(seacretWord.charAt(i))) {
                 printWord.set(i, S);
                 Right++;
-                Om_Fel = false;
+                If_Wrong = false;
             }
         }
-        if (Om_Fel){
+        if (If_Wrong){
             Fail++;
         }
         print();
